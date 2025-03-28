@@ -1,0 +1,36 @@
+﻿@model PaginatedList<Product>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>CategoryId</th>
+            <th>CategoryName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.CategoryId</td>
+                <td>@product.Category.CategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Links -->
+<div>
+    @if (Model.PageIndex > 1)
+    {
+        <a href="?pageIndex=@(Model.PageIndex - 1)">Previous</a>
+    }
+
+    @if (Model.PageIndex < Model.TotalPages)
+    {
+        <a href="?pageIndex=@(Model.PageIndex + 1)">Next</a>
+    }
+</div>
